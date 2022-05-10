@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 
 import com.technical.payconiqchallenge.dto.StockDTO;
 import com.technical.payconiqchallenge.entity.Stock;
@@ -98,13 +99,13 @@ public class StockServiceTest {
 	@Test
 	public void deleteByValidIdStock()
 	{
-		assertTrue( stockService.deleteStock(1014).getBody().toString().equals("1014 has been deleted"));
+		assertTrue( stockService.deleteStock(1014).getStatusCode().equals(HttpStatus.NO_CONTENT));
 	}
 
 	@Test
 	public void deleteByInValidIdStock()
 	{
-		assertTrue( stockService.deleteStock(1).getBody().toString().equals("Given id is not available in database"));
+		assertTrue( stockService.deleteStock(1).getStatusCode().equals(HttpStatus.NOT_FOUND));
 	}
 	
 	@AfterAll

@@ -1,4 +1,4 @@
-package com.technical.payconiqchallenge.controller;
+package com.technical.payconiqchallenge.controllerIntegrationTesting;
 
 
 
@@ -9,6 +9,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,8 +23,10 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -112,7 +116,20 @@ public class StockControllerTest {
 		final String baseUrl = "http://localhost:"+port+"/api/stocks";
 	    URI uri = new URI(baseUrl);
 	     
-	    StockDTO stock1 = new StockDTO("bharaath",1268);
+	    StockDTO stock1 = new StockDTO("testCS",1264);
+	 
+	   ResponseEntity<String> result = restTemplate.postForEntity(uri, stock1, String.class);
+	     
+	   assertTrue(Integer.valueOf(result.getBody()) > 0);
+	}
+	
+	@Test
+	public void testCreateStocksUsingAllValues() throws Exception {
+		
+		final String baseUrl = "http://localhost:"+port+"/api/stocks";
+	    URI uri = new URI(baseUrl);
+	     
+	    StockDTO stock1 = new StockDTO(1,"testCStock",3478, new Timestamp(new Date().getTime()));
 	 
 	   ResponseEntity<String> result = restTemplate.postForEntity(uri, stock1, String.class);
 	     
@@ -121,6 +138,31 @@ public class StockControllerTest {
 	
 	@Test
 	public void testCreateStocksWithEmptyValue() throws Exception {
+		
+		final String baseUrl = "http://localhost:"+port+"/api/stocks";
+	    URI uri = new URI(baseUrl);
+	     
+	    StockDTO stock1 = new StockDTO();
+	 
+	   ResponseEntity<?> result = restTemplate.postForEntity(uri, stock1, String.class);
+	     
+	   assertTrue(result.getBody().equals("Name and current value cannot be empty"));
+	}
+	@Test
+	public void testCreateStocksWithEmptyNameValue() throws Exception {
+		
+		final String baseUrl = "http://localhost:"+port+"/api/stocks";
+	    URI uri = new URI(baseUrl);
+	     
+	    StockDTO stock1 = new StockDTO(null,1234);
+	 
+	   ResponseEntity<?> result = restTemplate.postForEntity(uri, stock1, String.class);
+	     
+	   assertTrue(result.getBody().equals("Name and current value cannot be empty"));
+	}
+	
+	@Test
+	public void testCreateStocksWithEmptyCurrentPriceValue() throws Exception {
 		
 		final String baseUrl = "http://localhost:"+port+"/api/stocks";
 	    URI uri = new URI(baseUrl);
@@ -146,8 +188,34 @@ public class StockControllerTest {
 	}
 	
 	
+
+	
 	@Test
-	public void deleteUpdateStocks() throws Exception {
+	public void testUpdateStockValidData()
+	{
+		String url="http://localhost:"+port+"/api/stocks/1015/456";;
+		this.restTemplate.patchForObject(url, null, String.class);
+		assertTrue(stockservice.getStockById(1015).getCurrentPrice() == 456);
+	}
+	
+	@Test
+	public void testUpdateStockInValidId()
+	{
+		String url="http://localhost:"+port+"/api/stocks/23456/456";;
+		String s = this.restTemplate.patchForObject(url, null, String.class);
+		assertTrue(Integer.valueOf(s) == 0);
+	}
+	
+	@Test
+	public void testUpdateStockNullValues()
+	{
+		String url="http://localhost:"+port+"/api/stocks";
+		String s = this.restTemplate.patchForObject(url, null, String.class);
+		assertTrue(s.equals("Please provide valid Parameters"));
+	}
+	
+	@Test
+	public void deleteStocks() throws Exception {
 		if(stockservice.getStockById(1014).getId() != 0)
 		{
 			String deleteStocks = "http://localhost:"+port+"/api/stocks/1014";
@@ -155,8 +223,14 @@ public class StockControllerTest {
 			assertTrue(stockservice.getStockById(1014).getId() == 0);
 		}
 		
+	}
+	
+	@Test
+	public void deleteStocksInValidData() throws Exception {
 		
-		
+			String deleteStocks = "http://localhost:"+port+"/api/stocks/1";
+			restTemplate.delete(deleteStocks);
+			assertTrue(stockservice.getStockById(1).getId() == 0);
 	}
 	
 	@AfterAll
@@ -170,6 +244,7 @@ public class StockControllerTest {
 		stockservice.deleteStock(1018);
 		stockservice.deleteStock(1019);
 		stockservice.deleteStock(1020);
+		stockservice.deleteStock(1021);
 		
 	}
 	

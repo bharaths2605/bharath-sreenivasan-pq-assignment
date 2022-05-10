@@ -44,7 +44,7 @@ public class StockContoller {
 	}
 	
 	@PatchMapping(value = "/stocks/{id}/{price}")
-	public int updateStock(int id, int price) {
+	public int updateStock(@PathVariable int id, @PathVariable int price) {
 		return stockService.updateStock(id, price);
 
 	}

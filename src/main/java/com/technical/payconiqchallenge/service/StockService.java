@@ -68,9 +68,9 @@ public class StockService implements IStockService {
 		try {
 			stockRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			return ResponseEntity.status(HttpStatus.OK).body("Given id is not available in database");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(id + " has been deleted");
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 
 	}
 
