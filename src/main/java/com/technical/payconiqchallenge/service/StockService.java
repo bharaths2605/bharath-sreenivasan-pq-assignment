@@ -18,6 +18,10 @@ import com.technical.payconiqchallenge.dto.StockDTO;
 import com.technical.payconiqchallenge.entity.Stock;
 import com.technical.payconiqchallenge.repository.StockRepository;
 
+/**
+ * @author Bharath
+ *
+ */
 @Component
 public class StockService implements IStockService {
 
@@ -27,6 +31,12 @@ public class StockService implements IStockService {
 	@Autowired
 	private ModelMapper mapper;
 
+	/**
+	 * getAllStock
+	 * 
+	 * @param Pageable
+	 * @return List<StockDTO>
+	 */
 	@Override
 	public List<StockDTO> getAllStock(Pageable p) {
 		Page<Stock> stockList = stockRepository.findAll(p);
@@ -36,6 +46,13 @@ public class StockService implements IStockService {
 		return stockDTO;
 	}
 
+	/**
+	 * getStockById
+	 * 
+	 * @param id
+	 * @return StockDTO
+	 *
+	 */
 	@Override
 	public StockDTO getStockById(int id) {
 		Optional<Stock> stock = stockRepository.findAllById(id);
@@ -46,12 +63,24 @@ public class StockService implements IStockService {
 		return new StockDTO();
 	}
 
+	/**
+	 * addStock
+	 * 
+	 * @param StockDTO
+	 * @return id
+	 */
 	@Override
 	public int addStock(StockDTO stockDTO) {
 		Stock stock = mapper.map(stockDTO, Stock.class);
 		return stockRepository.save(stock).getId();
 	}
 
+	/**
+	 * updateStock
+	 * 
+	 * @param id , @param price
+	 * @return id
+	 */
 	@Override
 	public int updateStock(int id, int price) {
 		Optional<Stock> stock = stockRepository.findAllById(id);
@@ -63,6 +92,12 @@ public class StockService implements IStockService {
 		return 0;
 	}
 
+	/**
+	 * deleteStock
+	 * 
+	 * @param id
+	 * @return httpStatus
+	 */
 	@Override
 	public ResponseEntity<?> deleteStock(int id) {
 		try {

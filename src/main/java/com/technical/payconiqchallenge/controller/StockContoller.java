@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.technical.payconiqchallenge.dto.StockDTO;
 import com.technical.payconiqchallenge.service.IStockService;
 
+/**
+ * @author Bharath
+ *
+ */
 @RestController
 @RequestMapping("/api")
 public class StockContoller {
@@ -32,13 +36,13 @@ public class StockContoller {
 	}
 	
 	@GetMapping(value = "/stocks/{id}")
-	public StockDTO getStock(@PathVariable int id) {
+	public StockDTO getStockById(@PathVariable int id) {
 		return stockService.getStockById(id);
 
 	}
 	
 	@PostMapping("/stocks")
-	public int addStocks(@Valid @RequestBody StockDTO stockDTO) {
+	public int addStock(@Valid @RequestBody StockDTO stockDTO) {
 		return stockService.addStock(stockDTO);
 	}
 
