@@ -84,10 +84,11 @@ public class StockService implements IStockService {
 	@Override
 	public int updateStock(int id, int price) {
 		Optional<Stock> stock = stockRepository.findAllById(id);
-
 		if (stock.isPresent()) {
-			stock.get().setCurrentPrice(price);
-			return stockRepository.save(stock.get()).getId();
+			StockDTO stockDTO = mapper.map(stock.get(), StockDTO.class);
+			stockDTO.setCurrentPrice(price);
+			Stock stockUpdate = mapper.map(stockDTO, Stock.class);
+			return stockRepository.save(stockUpdate).getId();
 		}
 		return 0;
 	}
