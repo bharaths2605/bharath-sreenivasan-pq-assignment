@@ -7,14 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.technical.payconiqchallenge.entity.Stock;
 
-
 @Repository
-public interface StockRepository extends JpaRepository<Stock,Integer>{
-	
-   public Optional<Stock> findAllById(int id);
-   
-   public Optional<Stock> findAllByName(String name);
-   
-   
+public interface StockRepository extends JpaRepository<Stock, Integer> {
+
+	public Optional<Stock> findAllById(int id);
+
+	public Optional<Stock> findAllByName(String name);
 
 }

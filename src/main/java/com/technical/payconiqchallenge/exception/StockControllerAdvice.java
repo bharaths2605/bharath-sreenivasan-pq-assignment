@@ -28,19 +28,15 @@ public class StockControllerAdvice {
 	public ResponseEntity<?> numberFormatException(NumberFormatException e) {
 		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
 	}
-	
+
 	@ExceptionHandler({ MethodArgumentNotValidException.class })
 	public ResponseEntity<?> notValidInput(MethodArgumentNotValidException e) {
 		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Name and current value cannot be empty");
 	}
-	
+
 	@ExceptionHandler({ HttpRequestMethodNotSupportedException.class })
 	public ResponseEntity<?> notValidInputForPatch(HttpRequestMethodNotSupportedException e) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please provide valid Parameters");
 	}
-	
-	
-	
-	
 
 }

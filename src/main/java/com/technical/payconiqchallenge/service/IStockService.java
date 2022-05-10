@@ -14,15 +14,11 @@ public interface IStockService {
 	public List<StockDTO> getAllStock(Pageable p);
 
 	public int addStock(StockDTO stockDTO);
-	
+
 	public StockDTO getStockById(int id);
-	
+
 	public int updateStock(int id, int price);
-	
+
 	public ResponseEntity<?> deleteStock(int id);
-
-
-
-
 
 }

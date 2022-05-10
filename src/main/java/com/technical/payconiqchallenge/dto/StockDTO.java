@@ -1,6 +1,7 @@
 package com.technical.payconiqchallenge.dto;
 
 import java.sql.Timestamp;
+
 import javax.validation.constraints.NotNull;
 
 public class StockDTO {

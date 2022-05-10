@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.technical.payconiqchallenge.dto.StockDTO;
-import com.technical.payconiqchallenge.entity.Stock;
 import com.technical.payconiqchallenge.service.IStockService;
 
 @RestController
@@ -31,28 +30,27 @@ public class StockContoller {
 	public List<StockDTO> getAllStocks(Pageable p) {
 		return stockService.getAllStock(p);
 	}
-	
+
 	@PostMapping("/stocks")
 	public int addStocks(@Valid @RequestBody StockDTO stockDTO) {
 		return stockService.addStock(stockDTO);
 	}
-	
+
 	@GetMapping(value = "/stocks/{id}")
 	public StockDTO getStock(@PathVariable int id) {
 		return stockService.getStockById(id);
 
 	}
-	
+
 	@PatchMapping(value = "/stocks/{id}/{price}")
 	public int updateStock(@PathVariable int id, @PathVariable int price) {
 		return stockService.updateStock(id, price);
 
 	}
-	
+
 	@DeleteMapping(value = "/stocks/{id}")
 	public ResponseEntity<?> deleteStock(@PathVariable int id) {
-		 return stockService.deleteStock(id);
+		return stockService.deleteStock(id);
 	}
-	
 
 }

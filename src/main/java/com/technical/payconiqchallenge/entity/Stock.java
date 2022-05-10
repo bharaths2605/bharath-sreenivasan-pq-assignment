@@ -1,6 +1,5 @@
 package com.technical.payconiqchallenge.entity;
 
-
 import java.util.Date;
 
 import javax.persistence.Basic;
@@ -18,7 +17,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "stocks")
 public class Stock {
 
-	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +29,6 @@ public class Stock {
 	@Column(name = "current_price")
 	@NotNull
 	private int currentPrice;
-
-	
 
 	@Basic(optional = false)
 	@Column(name = "last_update", insertable = false, updatable = false)
@@ -83,5 +79,4 @@ public class Stock {
 		this.lastUpdate = lastUpdate;
 	}
 
-	
 }

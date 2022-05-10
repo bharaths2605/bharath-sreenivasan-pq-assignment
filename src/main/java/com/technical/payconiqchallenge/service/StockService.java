@@ -30,16 +30,16 @@ public class StockService implements IStockService {
 	@Override
 	public List<StockDTO> getAllStock(Pageable p) {
 		Page<Stock> stockList = stockRepository.findAll(p);
-		Type listType = new TypeToken<List<StockDTO>>() {}.getType();
+		Type listType = new TypeToken<List<StockDTO>>() {
+		}.getType();
 		List<StockDTO> stockDTO = mapper.map(stockList.getContent(), listType);
 		return stockDTO;
 	}
 
 	@Override
 	public StockDTO getStockById(int id) {
-		Optional<Stock>  stock  = stockRepository.findAllById(id);
-		if (stock.isPresent())
-		{
+		Optional<Stock> stock = stockRepository.findAllById(id);
+		if (stock.isPresent()) {
 			StockDTO stockDTO = mapper.map(stock.get(), StockDTO.class);
 			return stockDTO;
 		}
@@ -54,8 +54,8 @@ public class StockService implements IStockService {
 
 	@Override
 	public int updateStock(int id, int price) {
-		Optional<Stock> stock =  stockRepository.findAllById(id);
-	
+		Optional<Stock> stock = stockRepository.findAllById(id);
+
 		if (stock.isPresent()) {
 			stock.get().setCurrentPrice(price);
 			return stockRepository.save(stock.get()).getId();
