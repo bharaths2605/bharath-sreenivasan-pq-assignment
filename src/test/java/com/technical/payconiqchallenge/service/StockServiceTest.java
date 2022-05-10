@@ -9,18 +9,16 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.technical.payconiqchallenge.dto.StockDTO;
 import com.technical.payconiqchallenge.entity.Stock;
 import com.technical.payconiqchallenge.repository.StockRepository;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StockServiceTest {
