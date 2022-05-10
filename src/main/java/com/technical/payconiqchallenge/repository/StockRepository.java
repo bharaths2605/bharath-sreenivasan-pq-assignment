@@ -1,11 +1,11 @@
-package com.technical.paycoinzchallenge.repository;
+package com.technical.payconiqchallenge.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.technical.paycoinzchallenge.entity.Stock;
+import com.technical.payconiqchallenge.entity.Stock;
 
 
 @Repository

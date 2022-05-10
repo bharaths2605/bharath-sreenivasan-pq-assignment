@@ -1,4 +1,4 @@
-package com.technical.paycoinzchallenge;
+package com.technical.payconiqchallenge;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -9,10 +9,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan("com.technical.paycoinzchallenge.entity")
-@EnableJpaRepositories("com.technical.paycoinzchallenge.repository")
-@ComponentScan("com.technical.paycoinzchallenge.Iservice")
-@ComponentScan("com.technical.paycoinzchallenge.controller")
+@EntityScan("com.technical.payconiqchallenge.entity")
+@EnableJpaRepositories("com.technical.payconiqchallenge.repository")
+@ComponentScan("com.technical.payconiqchallenge.Iservice")
+@ComponentScan("com.technical.payconiqchallenge.controller")
 public class PaycoinzchallengeApplication {
 
 	public static void main(String[] args) {

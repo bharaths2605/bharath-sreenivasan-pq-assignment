@@ -1,4 +1,4 @@
-package com.technical.paycoinzchallenge.exception;
+package com.technical.payconiqchallenge.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

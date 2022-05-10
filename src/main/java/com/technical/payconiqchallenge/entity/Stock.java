@@ -1,4 +1,4 @@
-package com.technical.paycoinzchallenge.entity;
+package com.technical.payconiqchallenge.entity;
 
 
 import java.util.Date;

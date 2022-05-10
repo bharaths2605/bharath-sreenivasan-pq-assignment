@@ -1,4 +1,4 @@
-package com.technical.paycoinzchallenge.service;
+package com.technical.payconiqchallenge.service;
 
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,9 +16,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.technical.paycoinzchallenge.dto.StockDTO;
-import com.technical.paycoinzchallenge.entity.Stock;
-import com.technical.paycoinzchallenge.repository.StockRepository;
+import com.technical.payconiqchallenge.dto.StockDTO;
+import com.technical.payconiqchallenge.entity.Stock;
+import com.technical.payconiqchallenge.repository.StockRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

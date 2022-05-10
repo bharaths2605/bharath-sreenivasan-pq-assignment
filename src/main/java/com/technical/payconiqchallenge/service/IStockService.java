@@ -1,4 +1,4 @@
-package com.technical.paycoinzchallenge.service;
+package com.technical.payconiqchallenge.service;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.technical.paycoinzchallenge.dto.StockDTO;
+import com.technical.payconiqchallenge.dto.StockDTO;
 
 @Service
 public interface IStockService {

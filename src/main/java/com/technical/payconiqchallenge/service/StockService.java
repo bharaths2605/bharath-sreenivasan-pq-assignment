@@ -1,4 +1,4 @@
-package com.technical.paycoinzchallenge.service;
+package com.technical.payconiqchallenge.service;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -14,9 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import com.technical.paycoinzchallenge.dto.StockDTO;
-import com.technical.paycoinzchallenge.entity.Stock;
-import com.technical.paycoinzchallenge.repository.StockRepository;
+import com.technical.payconiqchallenge.dto.StockDTO;
+import com.technical.payconiqchallenge.entity.Stock;
+import com.technical.payconiqchallenge.repository.StockRepository;
 
 @Component
 public class StockService implements IStockService {

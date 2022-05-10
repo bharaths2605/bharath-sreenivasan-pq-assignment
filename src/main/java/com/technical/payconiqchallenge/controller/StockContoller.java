@@ -1,4 +1,4 @@
-package com.technical.paycoinzchallenge.controller;
+package com.technical.payconiqchallenge.controller;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.technical.paycoinzchallenge.dto.StockDTO;
-import com.technical.paycoinzchallenge.entity.Stock;
-import com.technical.paycoinzchallenge.service.IStockService;
+import com.technical.payconiqchallenge.dto.StockDTO;
+import com.technical.payconiqchallenge.entity.Stock;
+import com.technical.payconiqchallenge.service.IStockService;
 
 @RestController
 @RequestMapping("/api")
