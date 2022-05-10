@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -131,7 +132,8 @@ public class StockControllerTest {
 
 		ResponseEntity<?> result = restTemplate.postForEntity(uri, stock1, String.class);
 
-		assertTrue(result.getBody().equals("Name and current value cannot be empty"));
+		assertTrue(result.getStatusCode().equals(HttpStatus.UNPROCESSABLE_ENTITY));
+		assertTrue(result.getBody().equals("name and currentPrice cannot be empty"));
 	}
 
 	@Test
@@ -144,7 +146,8 @@ public class StockControllerTest {
 
 		ResponseEntity<?> result = restTemplate.postForEntity(uri, stock1, String.class);
 
-		assertTrue(result.getBody().equals("Name and current value cannot be empty"));
+		assertTrue(result.getStatusCode().equals(HttpStatus.UNPROCESSABLE_ENTITY));
+		assertTrue(result.getBody().equals("name and currentPrice cannot be empty"));
 	}
 
 	@Test
@@ -157,7 +160,8 @@ public class StockControllerTest {
 
 		ResponseEntity<?> result = restTemplate.postForEntity(uri, stock1, String.class);
 
-		assertTrue(result.getBody().equals("Name and current value cannot be empty"));
+		assertTrue(result.getStatusCode().equals(HttpStatus.UNPROCESSABLE_ENTITY));
+		assertTrue(result.getBody().equals("name and currentPrice cannot be empty"));
 	}
 
 	@Test

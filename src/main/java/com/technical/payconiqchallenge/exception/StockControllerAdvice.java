@@ -35,7 +35,7 @@ public class StockControllerAdvice {
 
 	@ExceptionHandler({ MethodArgumentNotValidException.class })
 	public ResponseEntity<?> notValidInput(MethodArgumentNotValidException e) {
-		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Name and current value cannot be empty");
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("name and currentPrice cannot be empty");
 	}
 
 	@ExceptionHandler({ HttpRequestMethodNotSupportedException.class })
