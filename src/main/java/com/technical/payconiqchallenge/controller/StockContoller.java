@@ -30,17 +30,19 @@ public class StockContoller {
 	public List<StockDTO> getAllStocks(Pageable p) {
 		return stockService.getAllStock(p);
 	}
-
-	@PostMapping("/stocks")
-	public int addStocks(@Valid @RequestBody StockDTO stockDTO) {
-		return stockService.addStock(stockDTO);
-	}
-
+	
 	@GetMapping(value = "/stocks/{id}")
 	public StockDTO getStock(@PathVariable int id) {
 		return stockService.getStockById(id);
 
 	}
+	
+	@PostMapping("/stocks")
+	public int addStocks(@Valid @RequestBody StockDTO stockDTO) {
+		return stockService.addStock(stockDTO);
+	}
+
+	
 
 	@PatchMapping(value = "/stocks/{id}/{price}")
 	public int updateStock(@PathVariable int id, @PathVariable int price) {

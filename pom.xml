@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.technical</groupId>
-	<artifactId>payconiqchallenge</artifactId>
+	<artifactId>payconiq-challenge</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Paycoinq Technical Challenge</description>
 	<properties>
