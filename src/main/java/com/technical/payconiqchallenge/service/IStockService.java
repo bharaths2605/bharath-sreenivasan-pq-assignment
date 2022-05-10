@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.technical.payconiqchallenge.dto.StockDTO;
 
+/**
+ * @author Bharath
+ *
+ */
 @Service
 public interface IStockService {
 

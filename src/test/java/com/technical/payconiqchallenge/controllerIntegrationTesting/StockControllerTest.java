@@ -24,6 +24,10 @@ import com.technical.payconiqchallenge.dto.StockDTO;
 import com.technical.payconiqchallenge.entity.Stock;
 import com.technical.payconiqchallenge.service.IStockService;
 
+/**
+ * @author Bharath
+ *
+ */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StockControllerTest {

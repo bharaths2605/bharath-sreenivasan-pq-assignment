@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.technical.payconiqchallenge.entity.Stock;
 
+/**
+ * @author Bharath
+ *
+ */
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Integer> {
 

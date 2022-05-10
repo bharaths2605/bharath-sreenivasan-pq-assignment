@@ -18,6 +18,10 @@ import com.technical.payconiqchallenge.dto.StockDTO;
 import com.technical.payconiqchallenge.entity.Stock;
 import com.technical.payconiqchallenge.repository.StockRepository;
 
+/**
+ * @author Bharath
+ *
+ */
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StockServiceTest {

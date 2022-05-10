@@ -13,6 +13,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author Bharath
+ *
+ */
 @Entity
 @Table(name = "stocks")
 public class Stock {

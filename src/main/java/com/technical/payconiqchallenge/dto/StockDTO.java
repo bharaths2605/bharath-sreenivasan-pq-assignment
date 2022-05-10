@@ -4,6 +4,10 @@ import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author Bharath
+ *
+ */
 public class StockDTO {
 
 	private int id;
