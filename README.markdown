@@ -7,7 +7,7 @@ docker run --detach --env MYSQL_ROOT_PASSWORD=root --env MYSQL_USER=admin --env 
 
 1. In the Spring Boot Application,  application.properties setup for connecting with docker
 
-Since I was using docker toolbox(Windows 10 Home) , i was not able to bind docker sql with local host, was only able to bind only with docker toolbox ipAddress
+Since I was using docker toolbox(Windows 10 Home) , i was not able to bind  sql started in docker  with local host,  I was only able to bind only with docker toolbox ipAddress
 
   Please change 'spring.datasource.url' based on below case
 
