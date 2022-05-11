@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EntityScan("com.technical.payconiqchallenge.entity")
 @EnableJpaRepositories("com.technical.payconiqchallenge.repository")
-@ComponentScan("com.technical.payconiqchallenge.*")
+@ComponentScan(basePackages = "com.technical.payconiqchallenge")
 public class PayconiqChallengeApplication {
 
 	public static void main(String[] args) {
