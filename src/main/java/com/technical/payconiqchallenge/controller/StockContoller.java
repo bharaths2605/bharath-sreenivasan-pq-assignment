@@ -31,25 +31,25 @@ public class StockContoller {
 	private IStockService stockService;
 
 	@GetMapping(value = "/stocks")
-	public List<StockDTO> getAllStocks(Pageable p) {
+	public ResponseEntity<List<StockDTO>> getAllStocks(Pageable p) {
 		return stockService.getAllStock(p);
 	}
 	
 	@GetMapping(value = "/stocks/{id}")
-	public StockDTO getStockById(@PathVariable int id) {
+	public ResponseEntity<StockDTO> getStockById(@PathVariable int id) {
 		return stockService.getStockById(id);
 
 	}
 	
 	@PostMapping("/stocks")
-	public int addStock(@Valid @RequestBody StockDTO stockDTO) {
+	public ResponseEntity<Integer> addStock(@Valid @RequestBody StockDTO stockDTO) {
 		return stockService.addStock(stockDTO);
 	}
 
 	
 
 	@PatchMapping(value = "/stocks/{id}/{price}")
-	public int updateStock(@PathVariable int id, @PathVariable int price) {
+	public ResponseEntity<String> updateStock(@PathVariable int id, @PathVariable int price) {
 		return stockService.updateStock(id, price);
 
 	}

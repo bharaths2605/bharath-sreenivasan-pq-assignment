@@ -90,10 +90,7 @@ public class StockControllerTest {
 	public void testGetStocksByInvalidId() throws Exception {
 
 		String result = this.restTemplate.getForObject("http://localhost:" + port + "/api/stocks/345", String.class);
-		ObjectMapper mapper = new ObjectMapper();
-		StockDTO stocks = mapper.readValue(result, StockDTO.class);
-		assertTrue(stocks.getId() == 0);
-		assertTrue(stocks.getName() == null);
+		assertTrue(result == null);
 	}
 
 	@Test
@@ -182,7 +179,7 @@ public class StockControllerTest {
 		String url = "http://localhost:" + port + "/api/stocks/1015/456";
 		;
 		this.restTemplate.patchForObject(url, null, String.class);
-		assertTrue(stockservice.getStockById(1015).getCurrentPrice() == 456);
+		assertTrue(stockservice.getStockById(1015).getBody().getCurrentPrice() == 456);
 	}
 
 	@Test
@@ -190,7 +187,7 @@ public class StockControllerTest {
 		String url = "http://localhost:" + port + "/api/stocks/23456/456";
 		;
 		String s = this.restTemplate.patchForObject(url, null, String.class);
-		assertTrue(Integer.valueOf(s) == 0);
+		assertTrue(s.equals("id 23456 value not found in database"));
 	}
 
 	@Test
@@ -202,10 +199,10 @@ public class StockControllerTest {
 
 	@Test
 	public void deleteStocks() throws Exception {
-		if (stockservice.getStockById(1014).getId() != 0) {
+		if (stockservice.getStockById(1014).getBody().getId() != 0) {
 			String deleteStocks = "http://localhost:" + port + "/api/stocks/1014";
 			this.restTemplate.delete(deleteStocks);
-			assertTrue(stockservice.getStockById(1014).getId() == 0);
+			assertTrue(stockservice.getStockById(1014).getBody() == null);
 		}
 
 	}
@@ -215,7 +212,7 @@ public class StockControllerTest {
 
 		String deleteStocks = "http://localhost:" + port + "/api/stocks/1";
 		restTemplate.delete(deleteStocks);
-		assertTrue(stockservice.getStockById(1).getId() == 0);
+		assertTrue(stockservice.getStockById(1).getBody() == null);
 	}
 
 	@AfterAll

@@ -38,12 +38,18 @@ public class StockService implements IStockService {
 	 * @return List<StockDTO>
 	 */
 	@Override
-	public List<StockDTO> getAllStock(Pageable p) {
-		Page<Stock> stockList = stockRepository.findAll(p);
-		Type listType = new TypeToken<List<StockDTO>>() {
-		}.getType();
-		List<StockDTO> stockDTO = mapper.map(stockList.getContent(), listType);
-		return stockDTO;
+	public ResponseEntity<List<StockDTO>> getAllStock(Pageable p) {
+		try {
+			Page<Stock> stockList = stockRepository.findAll(p);
+			Type listType = new TypeToken<List<StockDTO>>() {
+			}.getType();
+			List<StockDTO> stockDTOList = mapper.map(stockList.getContent(), listType);
+			return ResponseEntity.status(HttpStatus.OK).body(stockDTOList);
+		} 
+		catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(null);
+		}
 	}
 
 	/**
@@ -54,13 +60,23 @@ public class StockService implements IStockService {
 	 *
 	 */
 	@Override
-	public StockDTO getStockById(int id) {
-		Optional<Stock> stock = stockRepository.findAllById(id);
-		if (stock.isPresent()) {
-			StockDTO stockDTO = mapper.map(stock.get(), StockDTO.class);
-			return stockDTO;
+	public ResponseEntity<StockDTO> getStockById(int id) {
+		StockDTO stockDTO = null;
+		try {
+			Optional<Stock> stock = stockRepository.findAllById(id);
+			if (stock.isPresent()) 
+			{
+				stockDTO = mapper.map(stock.get(), StockDTO.class);
+				return ResponseEntity.status(HttpStatus.OK).body(stockDTO);
+			}
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(stockDTO);
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(null);
 		}
-		return new StockDTO();
+
 	}
 
 	/**
@@ -70,9 +86,14 @@ public class StockService implements IStockService {
 	 * @return id
 	 */
 	@Override
-	public int addStock(StockDTO stockDTO) {
-		Stock stock = mapper.map(stockDTO, Stock.class);
-		return stockRepository.save(stock).getId();
+	public ResponseEntity<Integer> addStock(StockDTO stockDTO) {
+		try {
+			Stock stock = mapper.map(stockDTO, Stock.class);
+			int id = stockRepository.save(stock).getId();
+			return ResponseEntity.status(HttpStatus.OK).body(id);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(0);
+		}
 	}
 
 	/**
@@ -82,15 +103,25 @@ public class StockService implements IStockService {
 	 * @return id
 	 */
 	@Override
-	public int updateStock(int id, int price) {
-		Optional<Stock> stock = stockRepository.findAllById(id);
-		if (stock.isPresent()) {
-			StockDTO stockDTO = mapper.map(stock.get(), StockDTO.class);
-			stockDTO.setCurrentPrice(price);
-			Stock stockUpdate = mapper.map(stockDTO, Stock.class);
-			return stockRepository.save(stockUpdate).getId();
+	public ResponseEntity<String> updateStock(int id, int price) {
+		try {
+			Optional<Stock> stock = stockRepository.findAllById(id);
+			if (stock.isPresent()) {
+				StockDTO stockDTO = mapper.map(stock.get(), StockDTO.class);
+				stockDTO.setCurrentPrice(price);
+				Stock stockUpdate = mapper.map(stockDTO, Stock.class);
+				stockRepository.save(stockUpdate);
+				return ResponseEntity.status(HttpStatus.OK).body("id "+ id + " has been updated");
+
+			}
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("id " + id + " value not found in database");
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Exception Occured while updating the stock");
 		}
-		return 0;
+
 	}
 
 	/**
@@ -103,11 +134,10 @@ public class StockService implements IStockService {
 	public ResponseEntity<?> deleteStock(int id) {
 		try {
 			stockRepository.deleteById(id);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 		} catch (EmptyResultDataAccessException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-
 	}
 
 }

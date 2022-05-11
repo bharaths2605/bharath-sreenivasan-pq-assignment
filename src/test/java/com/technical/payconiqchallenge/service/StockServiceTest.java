@@ -49,42 +49,41 @@ public class StockServiceTest {
 	@Test
 	public void testGetAllStockByPaginationOf5() {
 		Pageable pageable = PageRequest.of(0, 5);
-		assertTrue(stockService.getAllStock(pageable).size() == 5);
+		assertTrue(stockService.getAllStock(pageable).getBody().size() == 5);
 	}
 
 	@Test
 	public void testGetByIdValidStock() {
-		assertTrue(stockService.getStockById(1001).getId() == 1001);
+		assertTrue(stockService.getStockById(1001).getBody().getId() == 1001);
 	}
 
 	@Test
 	public void testGetByIdInvalidValidStock() {
-		assertTrue(stockService.getStockById(567).getId() == 0);
-		assertTrue(stockService.getStockById(567).getCurrentPrice() == 0);
-		assertTrue(stockService.getStockById(567).getName() == null);
-		assertTrue(stockService.getStockById(567).getLastUpdate() == null);
+		assertTrue(stockService.getStockById(567).getBody() == null);
+		assertTrue(stockService.getStockById(567).getStatusCode().equals(HttpStatus.NOT_FOUND));
+		
 
 	}
 
 	@Test
 	public void testCreateStock() {
 		StockDTO stock = new StockDTO("Test6", 12345);
-		int id = stockService.addStock(stock);
+		int id = stockService.addStock(stock).getBody();
 
-		assertTrue(stockService.getStockById(id).getName().equals("Test6"));
+		assertTrue(stockService.getStockById(id).getBody().getName().equals("Test6"));
 
 	}
 
 	@Test
 	public void updateByValidIdStock() {
 		stockService.updateStock(1001, 345);
-		assertTrue(stockService.getStockById(1001).getCurrentPrice() == 345);
+		assertTrue(stockService.getStockById(1001).getBody().getCurrentPrice() == 345);
 	}
 
 	@Test
 	public void updateByInValidIdStock() {
 		stockService.updateStock(1, 345);
-		assertTrue(stockService.updateStock(1, 345) == 0);
+		assertTrue(stockService.updateStock(1, 345).getBody().contains("value not found in database"));
 	}
 
 	@Test

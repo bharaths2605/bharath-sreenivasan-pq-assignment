@@ -15,13 +15,13 @@ import com.technical.payconiqchallenge.dto.StockDTO;
 @Service
 public interface IStockService {
 
-	public List<StockDTO> getAllStock(Pageable p);
+	public ResponseEntity<List<StockDTO>> getAllStock(Pageable p);
 
-	public int addStock(StockDTO stockDTO);
+	public ResponseEntity<Integer> addStock(StockDTO stockDTO);
 
-	public StockDTO getStockById(int id);
+	public ResponseEntity<StockDTO> getStockById(int id);
 
-	public int updateStock(int id, int price);
+	public ResponseEntity<String> updateStock(int id, int price);
 
 	public ResponseEntity<?> deleteStock(int id);
 
